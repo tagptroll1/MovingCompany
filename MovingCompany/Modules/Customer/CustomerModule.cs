@@ -23,9 +23,9 @@ public sealed class CustomerModule : IModule
         #region CRUD
         endpoints.MapGet($"api/v{Version}/customers", CustomerCRUDEndpoints.CRUDGetCustomers);
         endpoints.MapPost($"api/v{Version}/customers", CustomerCRUDEndpoints.CRUDCreateCustomer);
-        endpoints.MapGet($"api/v{Version}/customers/{{int:customerID}}", CustomerCRUDEndpoints.CRUDGetCustomerByID);
-        endpoints.MapPut($"api/v{Version}/customers/{{int:customerID}}", CustomerCRUDEndpoints.CRUDUpdateCustomer);
-        endpoints.MapDelete($"api/v{Version}/customers/{{int:customerID}}", CustomerCRUDEndpoints.CRUDDeleteCustomer);
+        endpoints.MapGet($"api/v{Version}/customers/{{customerID:int}}", CustomerCRUDEndpoints.CRUDGetCustomerByID);
+        endpoints.MapPut($"api/v{Version}/customers/{{customerID:int}}", CustomerCRUDEndpoints.CRUDUpdateCustomer);
+        endpoints.MapDelete($"api/v{Version}/customers/{{customerID:int}}", CustomerCRUDEndpoints.CRUDDeleteCustomer);
         #endregion
 
         endpoints.MapGet($"api/v{Version}/customers/expanded", async ([FromServices] IConfiguration configuration) =>
