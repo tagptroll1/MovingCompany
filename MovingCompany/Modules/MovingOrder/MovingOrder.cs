@@ -5,6 +5,7 @@ namespace MovingCompany.Models;
 [Table("MovingOrder")]
 public sealed class MovingOrder
 {
+    [Key]
     public int ID { get; set; }
     public int? CustomerID { get; set; }
     [Computed]

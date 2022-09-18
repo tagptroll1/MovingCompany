@@ -1,14 +1,13 @@
 ﻿
-using System.ComponentModel.DataAnnotations.Schema;
-using TableAttribute = Dapper.Contrib.Extensions.TableAttribute;
+using Dapper.Contrib.Extensions;
 
 namespace MovingCompany.Models;
 
 [Table("Address")]
 public sealed class Address
 {
+    [Key]
     public int? ID { get; set; }
-    [Column("addressline1")]
     public string? AddressLine1 { get; set; }
     public string? AddressLine2 { get; set; }
     public string? AddressLine3 { get; set; }

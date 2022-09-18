@@ -57,15 +57,23 @@ public class MovingOrdersService: IMovingOrderService
         order.ID = id;
 
         using var connection = SqlConnectionFactory.GetConnection(_connectionString);
-        //var oldOrder = await connection.QueryFirstOrDefaultAsync<MovingOrder>(
-        //    "SELECT * MovingOrder Where ID = @id", new { id });
 
-        //if (oldOrder is null)
-        //{
-        //    throw new ArgumentException($"Movingorder with id {} does not exist");
-        //}
+        var query = @"
+            UPDATE MovingOrder 
+            SET CustomerID = @CustomerID, 
+                MoveFromAddressID = @MoveFromAddressID, 
+                MoveToAddressID = @MoveToAddressID,
+                Service = @Service,
+                MoveFromDate = @MoveFromDate,
+                MoveToDate = @MoveToDate,
+                PackingDate = @PackingDate,
+                CleaningDate = @CleaningDate,
+                Comment = @Comment,
+                StatusCode = @StatusCode
+            WHERE ID = @ID";
 
-        await connection.UpdateAsync(order);
+        await connection.OpenAsync();
+        await connection.ExecuteAsync(query, order);
     }
 
     public async Task DeleteMovingOrderAsync(int orderID)

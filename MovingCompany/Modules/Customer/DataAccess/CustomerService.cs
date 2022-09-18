@@ -53,6 +53,8 @@ public sealed class CustomerService : ICustomerService
         customer.ID = customerID;
 
         using var connection = SqlConnectionFactory.GetConnection(_connectionString);
-        await connection.UpdateAsync(customer);
+        var query = "UPDATE Customer SET Name = @Name, Email = @Email, PhoneID = @PhoneID WHERE ID = @ID";
+        await connection.OpenAsync();
+        await connection.ExecuteAsync(query, customer);
     }
 }

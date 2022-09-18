@@ -14,10 +14,10 @@ public sealed class AddressModule : IModule
 
     public IEndpointRouteBuilder MapEndpoints(IEndpointRouteBuilder endpoints)
     {
-        endpoints.MapGet($"api/v{Version}/address", () =>
-        {
+        //endpoints.MapGet($"api/v{Version}/address", () =>
+        //{
 
-        }).WithName("GetAddresses");
+        //}).WithName("GetAddresses");
 
         return endpoints;
     }
